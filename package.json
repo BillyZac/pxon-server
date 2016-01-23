@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "pxon2",
-=======
   "name": "pxon-server",
->>>>>>> bc99f5bf74b5d220d366e89ecac65a26bcc48975
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
