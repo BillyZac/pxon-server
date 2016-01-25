@@ -12,7 +12,22 @@ fs.createReadStream('./images/Chuck-Close.png')
           pixels.push(getPixel(x, y, this))
         }
       }
-      console.log(pixels)
+      // console.log(pixels)
+      var pxon = {
+        "exif": {
+          "software": "",
+          "artist": "Zac Smith",
+          "imageDescription": "Chuck Close",
+          "userComment": "an example pixel drawing to show off pxon",
+          "copyright": "All of you",
+          "dateTime": ""
+        },
+        "pxif": {
+          "pixels": pixels,
+          "dataURL": ""
+        }
+      }
+      console.log(pxon.pxif.pixels)
     })
 
 function getPixel(x, y, imageData) {
