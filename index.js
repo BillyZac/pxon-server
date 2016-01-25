@@ -81,8 +81,8 @@ app.get('/', function(req, res) {
       }))
       .on('parsed', function() {
         var pixels = []
-        for (  var x = 0; x < this.width;  x = x + 50) {
-          for (var y = 0; y < this.height; y = y + 50) {
+        for (  var x = 0; x < this.width;  x = x + 4) {
+          for (var y = 0; y < this.height; y = y + 4) {
             pixels.push(getPixel(x, y, this))
           }
         }
@@ -101,7 +101,7 @@ app.get('/', function(req, res) {
             "dataURL": ""
           }
         }
-        console.log('About to send this across the internet:' + pxon.pxif.pixels)
+        // console.log('About to send this across the internet:' + pxon.pxif.pixels)
         console.log(this.width, this.height)
         res.json(pxon)
       })
