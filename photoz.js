@@ -1,5 +1,5 @@
 var fs = require('fs')
-var PNG = require('node-png').PNG
+var PNG = require('pngjs').PNG
 
 fs.createReadStream('./images/Chuck-Close-Wisdom-500x371.png')
     .pipe(new PNG({
