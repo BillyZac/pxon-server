@@ -1,25 +1,28 @@
 var fs = require('fs')
 var PNG = require('pngjs').PNG
 
-fs.createReadStream('./images/Chuck-Close-Wisdom-500x371.png')
+fs.createReadStream('./images/Chuck-Close.png')
     .pipe(new PNG({
         filterType: 4
     }))
     .on('parsed', function() {
-
-        for (var y = 0; y < this.height; y++) {
-            for (var x = 0; x < this.width; x++) {
-                var idx = (this.width * y + x) << 2;
-
-                // invert color
-                this.data[idx] = 255 - this.data[idx];
-                this.data[idx+1] = 255 - this.data[idx+1];
-                this.data[idx+2] = 255 - this.data[idx+2];
-
-                // and reduce opacity
-                this.data[idx+3] = this.data[idx+3] >> 1;
-            }
+      for (var x = 0; x < this.width; x = x+50) {
+        for (var y = 0; y < this.height; y = y + 50) {
+          console.log(getPixel(x, y, this))
         }
+      }
+    })
 
-        this.pack().pipe(fs.createWriteStream('out.png'));
-    });
+function getPixel(x, y, imageData) {
+  var data = imageData.data
+  var idx = (imageData.width * y + x) << 2
+  var pixel = {
+    x: x,
+    y: y,
+    r: data[idx],
+    g: data[idx+1],
+    b: data[idx+2],
+    a: data[idx+3] / 255 // Is this right?
+  }
+  return pixel
+}
